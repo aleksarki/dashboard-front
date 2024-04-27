@@ -53,12 +53,7 @@ input::placeholder {
   color: gray;
 }
 
-button:focus {
-	color: rebeccapurple;
-  border-color: rebeccapurple;
-  background-color: lavender;
-}
-
+button:focus,
 button:hover {
 	color: rebeccapurple;
   border-color: rebeccapurple;

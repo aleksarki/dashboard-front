@@ -54,12 +54,6 @@ function getRandomColor() {
 
 export default {
     components: { SideBar, BarChart, LineChart, PieChart },
-
-    /*setup() {
-        const route = useRoute()
-        const studentId = () => route.params.id
-    },
-    */
     
     data() {
         return {

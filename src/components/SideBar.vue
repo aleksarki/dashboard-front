@@ -1,5 +1,5 @@
 <template>
-    <div class="side-bar">
+	<div class="side-bar">
 		<div class="side-bar-title">
 			<span>Dashboard</span>
 		</div>
@@ -15,18 +15,12 @@
 				</router-link>
 			</ul>
 		</div>
-    </div>
+	</div>
 </template>
 
 <script>
 export default {
 	name: 'SideBar',
-	props: {
-		currentPage: {
-			type: String,
-			default: 'none'
-		}
-	},
 	data() {
 		return {
 			links: [
