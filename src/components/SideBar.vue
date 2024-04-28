@@ -62,6 +62,7 @@ export default {
 }
 
 .current-item {
+	color: slateblue!important;
 }
 
 a:link {
