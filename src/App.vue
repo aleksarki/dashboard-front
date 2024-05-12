@@ -47,6 +47,7 @@ input {
   padding-left: 15px;
   padding-right: 15px;
   box-shadow: 2px 2px 5px lightgray;
+  height: min-content;
 }
 
 input::placeholder {

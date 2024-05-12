@@ -76,10 +76,7 @@ a:visited {
 	color: #124c94;
 }
 
-a:focus {
-	color: rebeccapurple;
-}
-
+a:focus,
 a:hover {
 	color: rebeccapurple;
 }

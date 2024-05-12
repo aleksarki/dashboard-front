@@ -8,9 +8,9 @@
                     <button class="button-back" @click="$router.push({ name: 'students' })">Назад</button>
                 </div>
                 <div class="student-information">
-                    <span>Направление: {{ studentMajor }}</span><br>
-                    <span>Группа лекции: {{ studentLectionGroup }}</span><br>
-                    <span>Группа практики: {{ studentPracticeGroup }}</span>
+                    <span>Направление: <router-link :to="{name: 'major-info', params: {id: studentMajor.dir_id}}">{{ studentMajor.dir_name }}</router-link></span><br>
+                    <span>Группа лекции: {{ studentLectionGroup.group_name }}</span><br>
+                    <span>Группа практики: <router-link :to="{name: 'group-info', params: {id: studentPracticeGroup.group_id}}">{{ studentPracticeGroup.group_name }}</router-link></span>
                 </div>
                 <div class="charts-grid">
                     <div class="cell">
@@ -105,9 +105,9 @@ export default {
                 if (response.data.student_id)
                 {
                     this.student = response.data
-                    this.studentMajor = (await axios.get('http://localhost:3000/direction/' + String(this.student.dir_id))).data.dir_name
-                    this.studentLectionGroup = (await axios.get('http://localhost:3000/l_group/' + String(this.student.l_group_id))).data.group_name
-                    this.studentPracticeGroup = (await axios.get('http://localhost:3000/p_group/' + String(this.student.p_group_id))).data.group_name
+                    this.studentMajor = (await axios.get('http://localhost:3000/direction/' + String(this.student.dir_id))).data
+                    this.studentLectionGroup = (await axios.get('http://localhost:3000/l_group/' + String(this.student.l_group_id))).data
+                    this.studentPracticeGroup = (await axios.get('http://localhost:3000/p_group/' + String(this.student.p_group_id))).data
                     const studentAttendance = (await axios.get('http://localhost:3000/student/' + String(this.student.student_id) + '/attendance')).data.attendance
                     this.attendanceChartData = {
                         labels: ['П', 'Н'],
@@ -162,11 +162,6 @@ export default {
 </script>
 
 <style scoped>
-/*.page-title {
-    display: flex;
-    justify-content: space-between;
-}*/
-
 .button-back {
     margin-left: 30px;
 }
