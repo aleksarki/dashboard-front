@@ -122,6 +122,11 @@ export default {
                         }]
                     }
                     const practiceGroupTotalScore = (await axios.get('http://localhost:3000/p_group/' + String(this.practiceGroup.group_id) + '/totalscore')).data
+                    practiceGroupTotalScore.sort((score1, score2) => {
+                        if (score1.score == score2.score) return 0
+                        if (score1.score > score2.score) return 1
+                        return -1
+                    })
                     this.studentList = []
                     const labels = []
                     const data = []
@@ -133,6 +138,7 @@ export default {
                         data.push(score.score)
                         backgroundColor.push(getRandomColor())
                     }
+                    this.studentList.sort((student1, student2) => student1.student_name?.localeCompare(student2.student_name))
                     this.totalScoreChartData = {
                         labels: labels,
                         datasets: [{

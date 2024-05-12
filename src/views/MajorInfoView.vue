@@ -129,6 +129,11 @@ export default {
                         }]
                     }
                     const majorTotalScoreHist = (await axios.get('http://localhost:3000/direction/' + String(this.major.dir_id) + '/totalscorehist')).data
+                    majorTotalScoreHist.sort((score1, score2) => {
+                        if (score1.score == score2.score) return 0
+                        if (score1.score > score2.score) return 1
+                        return -1
+                    })
                     this.practiceGroupList = []
                     this.lectureGroupList = []
                     const labels = []
@@ -149,6 +154,7 @@ export default {
                             backgroundColor.push(getRandomColor())
                         }
                     }
+                    this.practiceGroupList.sort((p_group1, p_group2) => p_group1.group_name?.localeCompare(p_group2.group_name))  //result is odd (not surprised)
                     this.totalScoreHistChartData = {
                         labels: labels,
                         datasets: [{
