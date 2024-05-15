@@ -27,6 +27,7 @@ export default {
 				{title: 'Главная', to: {name: 'home'}},
 				{title: 'Студенты', to: {name: 'students'}},
 				{title: 'Группы (практика)', to: {name: 'practice-groups'}},
+				{title: 'Группы (лекции)', to: {name: 'lecture-groups'}},
 				{title: 'Направления', to: {name: 'majors'}}
 			]
 		}

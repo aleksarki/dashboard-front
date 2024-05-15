@@ -21,9 +21,7 @@
                         <PieChart :title="'Процент выполнения контрольных'" :data="testResultChartData" :options="doughnutChartOptions"/>
                     </div>
                 </div>
-                <div class="page-title">
-                    <span>Список групп практики</span>
-                </div>
+                <span class="page-title">Список групп практики</span>
                 <div class="basic-list">
                     <router-link
                         v-for="practiceGroup in practiceGroupList"
@@ -32,6 +30,17 @@
                         tag="ul"
                     >
                         <li class="basic-list-item">{{ practiceGroup.group_name }}</li>
+                    </router-link>
+                </div>
+                <span class="page-title">Список групп лекций</span>
+                <div class="basic-list">
+                    <router-link
+                        v-for="lectureGroup in lectureGroupList"
+                        :to="{name: 'lecture-group-info', params: {id: lectureGroup.group_id}}"
+                        :key="lectureGroup.group_id"
+                        tag="ul"
+                    >
+                        <li class="basic-list-item">{{ lectureGroup.group_name }}</li>
                     </router-link>
                 </div>
             </div>
@@ -154,7 +163,8 @@ export default {
                             backgroundColor.push(getRandomColor())
                         }
                     }
-                    this.practiceGroupList.sort((p_group1, p_group2) => p_group1.group_name?.localeCompare(p_group2.group_name))  //result is odd (not surprised)
+                    //this.practiceGroupList.sort((p_group1, p_group2) => p_group1.group_name?.localeCompare(p_group2.group_name))  //result is odd (not surprised)
+                    //this.lectureGroupList.sort((l_group1, l_group2) => l_group1.group_name?.localeCompare(l_group2.group_name))  // fixme
                     this.totalScoreHistChartData = {
                         labels: labels,
                         datasets: [{
