@@ -5,7 +5,7 @@
             <div v-if="practiceGroup.group_id">
                 <div class="page-title">
                     <span>О группе {{ practiceGroup.group_name }}</span>
-                    <button class="button-back" @click="$router.push({ name: 'groups' })">Назад</button>
+                    <button class="button-back" @click="$router.push({ name: 'practice-groups' })">Назад</button>
                 </div>
                 <div class="charts-grid">
                     <div class="cell">
@@ -37,7 +37,7 @@
             <div v-else>
                 <div class="page-title">
                     <span>Такой группы нет</span>
-                    <button class="button-back" @click="$router.push({ name: 'groups' })">Назад</button>
+                    <button class="button-back" @click="$router.push({ name: 'practice-groups' })">Назад</button>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
             <div class="basic-list">
                 <router-link
 					v-for="group in practiceGroupList"
-					:to="{name: 'group-info', params: {id: group.group_id}}"
+					:to="{name: 'practice-group-info', params: {id: group.group_id}}"
                     :key="group.group_id"
                     tag="ul"
 				>

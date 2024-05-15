@@ -5,8 +5,8 @@ import App from '@/App.vue'
 import HomeView from '@/views/HomeView.vue'
 import StudentsView from '@/views/StudentsView.vue'
 import StudentInfoView from '@/views/StudentInfoView.vue'
-import GroupsView from '@/views/GroupsView.vue'
-import GroupInfoView from '@/views/GroupInfoView.vue'
+import PracticeGroupsView from '@/views/PracticeGroupsView.vue'
+import PracticeGroupInfoView from '@/views/PracticeGroupInfoView.vue'
 import MajorsView from '@/views/MajorsView.vue'
 import MajorInfoView from '@/views/MajorInfoView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
@@ -19,8 +19,8 @@ const router = createRouter({
         {path: '/', name: 'home', component: HomeView},
         {path: '/students', name: 'students', component: StudentsView},
         {path: '/student-info/:id', name: 'student-info', component: StudentInfoView},
-        {path: '/practice-groups', name: 'groups', component: GroupsView},
-        {path: '/practice-group-info/:id', name: 'group-info', component: GroupInfoView},
+        {path: '/practice-groups', name: 'practice-groups', component: PracticeGroupsView},
+        {path: '/practice-group-info/:id', name: 'practice-group-info', component: PracticeGroupInfoView},
         //{path: '/groups-lecture', name: 'lecture-groups', component},
         {path: '/majors', name: 'majors', component: MajorsView},
         {path: '/major-info/:id', name: 'major-info', component: MajorInfoView},

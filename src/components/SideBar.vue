@@ -26,7 +26,7 @@ export default {
 			links: [
 				{title: 'Главная', to: {name: 'home'}},
 				{title: 'Студенты', to: {name: 'students'}},
-				{title: 'Группы (практика)', to: {name: 'groups'}},
+				{title: 'Группы (практика)', to: {name: 'practice-groups'}},
 				{title: 'Направления', to: {name: 'majors'}}
 			]
 		}

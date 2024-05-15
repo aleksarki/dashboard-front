@@ -10,7 +10,7 @@
                 <div class="student-information">
                     <span>Направление: <router-link :to="{name: 'major-info', params: {id: studentMajor.dir_id}}">{{ studentMajor.dir_name }}</router-link></span><br>
                     <span>Группа лекции: {{ studentLectionGroup.group_name }}</span><br>
-                    <span>Группа практики: <router-link :to="{name: 'group-info', params: {id: studentPracticeGroup.group_id}}">{{ studentPracticeGroup.group_name }}</router-link></span>
+                    <span>Группа практики: <router-link :to="{name: 'practice-group-info', params: {id: studentPracticeGroup.group_id}}">{{ studentPracticeGroup.group_name }}</router-link></span>
                 </div>
                 <div class="charts-grid">
                     <div class="cell">
