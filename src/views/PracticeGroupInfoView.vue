@@ -17,8 +17,6 @@
                     <div class="cell">
                         <BarChart height="10000" :title="'Успеваемость студентов'" :data="totalScoreChartData" :options="hbarChartOptions"/>
                     </div>
-                    <div class="cell">
-                    </div>
                 </div>
                 <div class="page-title">
                     <span>Список студентов</span>
@@ -47,7 +45,6 @@
 <script>
 import SideBar from '@/components/SideBar.vue'
 import BarChart from '@/components/BarChart.vue'
-import LineChart from '@/components/LineChart.vue'
 import PieChart from '@/components/PieChart.vue'
 import BasicChart from '@/components/BasicChart.vue'
 import axios from 'axios'
@@ -61,7 +58,7 @@ function getRandomColor() {
 }
 
 export default {
-    components: { SideBar, BarChart, LineChart, PieChart, BasicChart },
+    components: { SideBar, BarChart, PieChart, BasicChart },
 
     data(){
         return {
@@ -151,15 +148,9 @@ export default {
                     this.practiceGroup = undefined  //group not found
             } catch (e) {
                 console.log(e)
-                this.student = undefined
+                this.practiceGroup = undefined
             }
         }
     }
 }
 </script>
-
-<style>
-.button-back {
-    margin-left: 30px;
-}
-</style>

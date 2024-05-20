@@ -2,9 +2,7 @@
     <div class="main-page">
         <SideBar/>
         <div class="work-flow">
-            <div class="page-title">
-                <span>Направления</span>
-            </div>
+            <span class="page-title">Направления</span>
             <div class="basic-list">
                 <router-link
 					v-for="major in majorList"

@@ -2,9 +2,7 @@
     <div class="main-page">
         <SideBar/>
         <div class="work-flow">
-            <div class="page-title">
-                <span>Главная</span>
-            </div>
+            <span class="page-title">Главная</span>
             <div class="charts-grid">
                 <div class="cell">
                     <PieChart :title="'Процент посещаемости'" :data="attendanceChartData" :options="doughnutChartOptions"/>
@@ -12,18 +10,12 @@
                 <div class="cell">
                     <PieChart :title="'Процент выполнения контрольных'" :data="testResultChartData" :options="doughnutChartOptions"/>
                 </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import BarChart from '@/components/BarChart.vue'
-import LineChart from '@/components/LineChart.vue'
 import PieChart from '@/components/PieChart.vue'
 import SideBar from '@/components/SideBar.vue'
 import axios from 'axios'
@@ -31,7 +23,7 @@ import axios from 'axios'
 const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
 
 export default {
-    components: { BarChart, LineChart, PieChart, SideBar },
+    components: { PieChart, SideBar },
 
     data() {
         return {

@@ -1,20 +1,16 @@
 <template>
 	<div class="side-bar">
-		<div class="side-bar-title">
-			<span>Dashboard</span>
-		</div>
-		<div class="menu">
-			<ul class="menu-list">
-				<router-link
-					v-for="link in links"
-					:key="link.to"
-					:to="link.to"
-					active-class="current-item"
-				>
-					<li>{{ link.title }}</li>
-				</router-link>
-			</ul>
-		</div>
+		<span class="side-bar-title">Dashboard</span>
+		<ul class="menu">
+			<router-link
+				v-for="link in links"
+				:key="link.to"
+				:to="link.to"
+				active-class="current-item"
+			>
+				<li>{{ link.title }}</li>
+			</router-link>
+		</ul>
 	</div>
 </template>
 
@@ -41,7 +37,6 @@ export default {
   background-color:#DAE2EF;
   border-radius: 15px;
   margin: 5px;
-  
 }
 
 .side-bar-title {
@@ -54,9 +49,6 @@ export default {
 
 .menu {
   text-align: center;
-}
-
-.menu-list {
   list-style: none;
   padding: 0;
   margin: 0;

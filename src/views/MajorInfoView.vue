@@ -57,7 +57,6 @@
 <script>
 import SideBar from '@/components/SideBar.vue'
 import BarChart from '@/components/BarChart.vue'
-import LineChart from '@/components/LineChart.vue'
 import PieChart from '@/components/PieChart.vue'
 import axios from 'axios'
 
@@ -70,7 +69,7 @@ function getRandomColor() {
 }
 
 export default {
-    components: { SideBar, BarChart, LineChart, PieChart },
+    components: { SideBar, BarChart, PieChart },
 
     data() {
         return {
@@ -112,7 +111,6 @@ export default {
 
     mounted() {
         this.fetchMajor()
-        
     },
 
     methods: {
@@ -163,7 +161,7 @@ export default {
                             backgroundColor.push(getRandomColor())
                         }
                     }
-                    //this.practiceGroupList.sort((p_group1, p_group2) => p_group1.group_name?.localeCompare(p_group2.group_name))  //result is odd (not surprised)
+                    //this.practiceGroupList.sort((p_group1, p_group2) => p_group1.group_name?.localeCompare(p_group2.group_name))  // result is odd (not surprised)
                     //this.lectureGroupList.sort((l_group1, l_group2) => l_group1.group_name?.localeCompare(l_group2.group_name))  // fixme
                     this.totalScoreHistChartData = {
                         labels: labels,
@@ -182,7 +180,7 @@ export default {
                         }]
                     }
                 } else
-                    this.major = undefined  //major not found
+                    this.major = undefined  // major not found
             } catch (e) {
                 console.log(e)
                 this.major = undefined

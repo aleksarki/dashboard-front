@@ -116,13 +116,7 @@ button:active {
   list-style-type: none;
 }
 
-</style>
-
-<script>
-export default {
-  data() {
-    return {
-    }
-  }
+.button-back {
+    margin-left: 30px;
 }
-</script>
+</style>

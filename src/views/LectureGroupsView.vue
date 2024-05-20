@@ -2,9 +2,7 @@
     <div class="main-page">
         <SideBar/>
         <div class="work-flow">
-            <div class="page-title">
-                <span>Группы лекций</span>
-            </div>
+            <span class="page-title">Группы лекций</span>
             <div class="basic-list">
                 <router-link
 					v-for="group in lectureGroupList"

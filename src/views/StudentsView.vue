@@ -2,11 +2,9 @@
     <div class="main-page">
         <SideBar/>
         <div class="work-flow">
-            <div class="page-title">
-                <span>Студенты</span>
-            </div>
+            <span class="page-title">Студенты</span>
             <div class="student-search-area">
-                <input class="student-search-input" v-model="studentQuery" placeholder="Имя студента">
+                <input v-model="studentQuery" placeholder="Имя студента">
                 <div class="search-option-area">
                     <span class="search-option-label">Группа практики</span>
                     <ComboBox v-model="groupFilter" :options="groupFilterOptions"/>
@@ -112,7 +110,7 @@ export default {
 {
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
+    margin-left: 30px;
     margin-top: 30px;
     width: 70%;
 }

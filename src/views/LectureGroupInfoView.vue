@@ -47,9 +47,7 @@
 <script>
 import SideBar from '@/components/SideBar.vue'
 import BarChart from '@/components/BarChart.vue'
-import LineChart from '@/components/LineChart.vue'
 import PieChart from '@/components/PieChart.vue'
-import BasicChart from '@/components/BasicChart.vue'
 import axios from 'axios'
 
 function getRandomColor() {
@@ -61,7 +59,7 @@ function getRandomColor() {
 }
 
 export default {
-    components: { SideBar, BarChart, LineChart, PieChart, BasicChart },
+    components: { SideBar, BarChart, PieChart },
 
     data(){
         return {
@@ -157,9 +155,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.button-back {
-    margin-left: 30px;
-}
-</style>
