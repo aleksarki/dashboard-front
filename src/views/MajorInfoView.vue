@@ -18,7 +18,13 @@
                         <BarChart :title="'Средний балл по группам'" :data="totalScoreHistChartData" :options="hbarChartOptions"/>
                     </div>
                     <div class="cell">
-                        <PieChart :title="'Процент выполнения контрольных'" :data="testResultChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Процент выполнения контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
+                    </div>
+                    <div class="cell">
+                        <PieChart :title="'Процент выполнения контрольной №2'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
+                    </div>
+                    <div class="cell">
+                        <PieChart :title="'Процент выполнения контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
                     </div>
                 </div>
                 <span class="page-title">Список групп практики</span>
@@ -102,7 +108,17 @@ export default {
                 datasets: [{}]
             },
 
-            testResultChartData: {
+            testResult1ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+
+            testResult2ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+
+            testResult3ChartData: {
                 labels: [],
                 datasets: [{}]
             },
@@ -171,12 +187,26 @@ export default {
                             backgroundColor: backgroundColor
                         }]
                     }
-                    const majorTestResult = (await axios.get('http://localhost:3000/direction/' + String(this.major.dir_id) + '/testresult')).data.test_result
-                    this.testResultChartData = {
+                    const majorTestResult = (await axios.get('http://localhost:3000/direction/' + String(this.major.dir_id) + '/testresult')).data
+                    this.testResult1ChartData = {
                         labels: ['Баллы'],
                         datasets: [{
                             backgroundColor: ['#41B883', '#E46651'],
-                            data: [majorTestResult, 1 - majorTestResult]
+                            data: [majorTestResult.test1_result, 1 - majorTestResult.test1_result]
+                        }]
+                    }
+                    this.testResult2ChartData = {
+                        labels: ['Баллы'],
+                        datasets: [{
+                            backgroundColor: ['#41B883', '#E46651'],
+                            data: [majorTestResult.test2_result, 1 - majorTestResult.test2_result]
+                        }]
+                    }
+                    this.testResult3ChartData = {
+                        labels: ['Баллы'],
+                        datasets: [{
+                            backgroundColor: ['#41B883', '#E46651'],
+                            data: [majorTestResult.test3_result, 1 - majorTestResult.test3_result]
                         }]
                     }
                 } else

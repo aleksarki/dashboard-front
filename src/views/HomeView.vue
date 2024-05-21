@@ -8,7 +8,13 @@
                     <PieChart :title="'Процент посещаемости'" :data="attendanceChartData" :options="doughnutChartOptions"/>
                 </div>
                 <div class="cell">
-                    <PieChart :title="'Процент выполнения контрольных'" :data="testResultChartData" :options="doughnutChartOptions"/>
+                    <PieChart :title="'Выполнение контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
+                </div>
+                <div class="cell">
+                    <PieChart :title="'Выполнение контрольной №2'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
+                </div>
+                <div class="cell">
+                    <PieChart :title="'Выполнение контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
                 </div>
             </div>
         </div>
@@ -37,7 +43,17 @@ export default {
                 datasets: [{}]
             },
 
-            testResultChartData: {
+            testResult1ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+
+            testResult2ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+
+            testResult3ChartData: {
                 labels: [],
                 datasets: [{}]
             }
@@ -63,12 +79,26 @@ export default {
                         data: [average(attendances), 1 - average(attendances)]
                     }]
                 }
-                const globalTestResult = (await axios.get('http://localhost:3000/testresult')).data.test_score
-                this.testResultChartData = {
+                const globalTestResult = (await axios.get('http://localhost:3000/testresult')).data
+                this.testResult1ChartData = {
                     labels: ['Баллы'],
                     datasets: [{
                         backgroundColor: ['#41B883', '#E46651'],
-                        data: [globalTestResult, 1 - globalTestResult]
+                        data: [globalTestResult.test1_score, 1 - globalTestResult.test1_score]
+                    }]
+                }
+                this.testResult2ChartData = {
+                    labels: ['Баллы'],
+                    datasets: [{
+                        backgroundColor: ['#41B883', '#E46651'],
+                        data: [globalTestResult.test2_score, 1 - globalTestResult.test2_score]
+                    }]
+                }
+                this.testResult3ChartData = {
+                    labels: ['Баллы'],
+                    datasets: [{
+                        backgroundColor: ['#41B883', '#E46651'],
+                        data: [globalTestResult.test3_score, 1 - globalTestResult.test3_score]
                     }]
                 }
             } catch (e) {

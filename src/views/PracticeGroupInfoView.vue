@@ -9,10 +9,16 @@
                 </div>
                 <div class="charts-grid">
                     <div class="cell">
-                        <PieChart :title="'Процент выполнения контрольных'" :data="testResultChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Процент посещаемости'" :data="attendanceChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
-                        <PieChart :title="'Процент посещаемости'" :data="attendanceChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Процент выполнения контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
+                    </div>
+                    <div class="cell">
+                        <PieChart :title="'Процент выполнения контрольной №2'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
+                    </div>
+                    <div class="cell">
+                        <PieChart :title="'Процент выполнения контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
                         <BarChart height="10000" :title="'Успеваемость студентов'" :data="totalScoreChartData" :options="hbarChartOptions"/>
@@ -75,7 +81,17 @@ export default {
                 cutout: '50%'
             },
 
-            testResultChartData: {
+            testResult1ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+
+            testResult2ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+
+            testResult3ChartData: {
                 labels: [],
                 datasets: [{}]
             },
@@ -102,12 +118,26 @@ export default {
                 const response = await axios.get('http://localhost:3000/p_group/' + String(this.$route.params.id))
                 if (response.data.group_id) {
                     this.practiceGroup = response.data
-                    const practiceGroupTestResult = (await axios.get('http://localhost:3000/p_group/' + String(this.practiceGroup.group_id) + '/testresult')).data.test_result
-                    this.testResultChartData = {
+                    const practiceGroupTestResult = (await axios.get('http://localhost:3000/p_group/' + String(this.practiceGroup.group_id) + '/testresult')).data
+                    this.testResult1ChartData = {
                         labels: ['Баллы'],
                         datasets: [{
                             backgroundColor: ['#41B883', '#E46651'],
-                            data: [practiceGroupTestResult, 1 - practiceGroupTestResult]
+                            data: [practiceGroupTestResult.test1_result, 1 - practiceGroupTestResult.test1_result]
+                        }]
+                    }
+                    this.testResult2ChartData = {
+                        labels: ['Баллы'],
+                        datasets: [{
+                            backgroundColor: ['#41B883', '#E46651'],
+                            data: [practiceGroupTestResult.test2_result, 1 - practiceGroupTestResult.test2_result]
+                        }]
+                    }
+                    this.testResult3ChartData = {
+                        labels: ['Баллы'],
+                        datasets: [{
+                            backgroundColor: ['#41B883', '#E46651'],
+                            data: [practiceGroupTestResult.test3_result, 1 - practiceGroupTestResult.test3_result]
                         }]
                     }
                     const practiceGroupAttendance = (await axios.get('http://localhost:3000/p_group/' + String(this.practiceGroup.group_id) + '/attendance')).data.attendance

@@ -20,7 +20,13 @@
                         <PieChart :title="'Текущая успеваемость'" :data="totalScoreChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
-                        <PieChart :title="'Процент выполнения контрольных'" :data="testResultChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Выполнение контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
+                    </div>
+                    <div class="cell">
+                        <PieChart :title="'Выполнение контрольной №2'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
+                    </div>
+                    <div class="cell">
+                        <PieChart :title="'Выполнение контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
                         <BarChart :title="'Баллы по практикам'" :data="practiceScoresChartData" :options="barChartOptions"/>
@@ -81,7 +87,17 @@ export default {
                 datasets: [{}]
             },
             
-            testResultChartData: {
+            testResult1ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+            
+            testResult2ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+            
+            testResult3ChartData: {
                 labels: [],
                 datasets: [{}]
             },
@@ -123,20 +139,35 @@ export default {
                             data: [studentTotalScore, 100 - studentTotalScore]
                         }]
                     }
-                    const studentTestResult = (await axios.get('http://localhost:3000/student/' + String(this.student.student_id) + '/testresult')).data.test_result
-                    this.testResultChartData = {
+                    const studentTestResult = (await axios.get('http://localhost:3000/student/' + String(this.student.student_id) + '/testresult')).data
+                    this.testResult1ChartData = {
                         labels: ['Баллы'],
                         datasets: [{
                             backgroundColor: ['#41B883', '#E46651'],
-                            data: [studentTestResult, 1 - studentTestResult]
+                            data: [studentTestResult.test1_result, 1 - studentTestResult.test1_result]
+                        }]
+                    }
+                    this.testResult2ChartData = {
+                        labels: ['Баллы'],
+                        datasets: [{
+                            backgroundColor: ['#41B883', '#E46651'],
+                            data: [studentTestResult.test2_result, 1 - studentTestResult.test2_result]
+                        }]
+                    }
+                    this.testResult3ChartData = {
+                        labels: ['Баллы'],
+                        datasets: [{
+                            backgroundColor: ['#41B883', '#E46651'],
+                            data: [studentTestResult.test3_result, 1 - studentTestResult.test3_result]
                         }]
                     }
                     const studentPracticeScores = (await axios.get('http://localhost:3000/student/' + String(this.student.student_id) + '/practicescore')).data
                     const labels = []
                     const data = []
                     const backgroundColor = []
+                    let counter = 1
                     studentPracticeScores.forEach(practice => {
-                        labels.push('')
+                        labels.push(counter++)
                         data.push(practice.score)
                         backgroundColor.push(getRandomColor())
                     })

@@ -9,10 +9,16 @@
                 </div>
                 <div class="charts-grid">
                     <div class="cell">
-                        <PieChart :title="'Процент выполнения контрольных'" :data="testResultChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Процент посещаемости'" :data="attendanceChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
-                        <PieChart :title="'Процент посещаемости'" :data="attendanceChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Процент выполнения контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
+                    </div>
+                    <div class="cell">
+                        <PieChart :title="'Процент выполнения контрольной №2'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
+                    </div>
+                    <div class="cell">
+                        <PieChart :title="'Процент выполнения контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
                         <BarChart height="10000" :title="'Успеваемость студентов'" :data="totalScoreChartData" :options="hbarChartOptions"/>
@@ -76,7 +82,17 @@ export default {
                 cutout: '50%'
             },
 
-            testResultChartData: {
+            testResult1ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+
+            testResult2ChartData: {
+                labels: [],
+                datasets: [{}]
+            },
+
+            testResult3ChartData: {
                 labels: [],
                 datasets: [{}]
             },
@@ -89,7 +105,7 @@ export default {
             totalScoreChartData: {
                 labels: [],
                 datasets: [{}]
-            },
+            }
         }
     },
 
@@ -103,12 +119,26 @@ export default {
                 const response = await axios.get('http://localhost:3000/l_group/' + String(this.$route.params.id))
                 if (response.data.group_id) {
                     this.lectureGroup = response.data
-                    const lectureGroupTestResult = (await axios.get('http://localhost:3000/l_group/' + String(this.lectureGroup.group_id) + '/testresult')).data.test_result
-                    this.testResultChartData = {
+                    const lectureGroupTestResult = (await axios.get('http://localhost:3000/l_group/' + String(this.lectureGroup.group_id) + '/testresult')).data
+                    this.testResult1ChartData = {
                         labels: ['Баллы'],
                         datasets: [{
                             backgroundColor: ['#41B883', '#E46651'],
-                            data: [lectureGroupTestResult, 1 - lectureGroupTestResult]
+                            data: [lectureGroupTestResult.test1_result, 1 - lectureGroupTestResult.test1_result]
+                        }]
+                    }
+                    this.testResult2ChartData = {
+                        labels: ['Баллы'],
+                        datasets: [{
+                            backgroundColor: ['#41B883', '#E46651'],
+                            data: [lectureGroupTestResult.test2_result, 1 - lectureGroupTestResult.test2_result]
+                        }]
+                    }
+                    this.testResult3ChartData = {
+                        labels: ['Баллы'],
+                        datasets: [{
+                            backgroundColor: ['#41B883', '#E46651'],
+                            data: [lectureGroupTestResult.test3_result, 1 - lectureGroupTestResult.test3_result]
                         }]
                     }
                     const lectureGroupAttendance = (await axios.get('http://localhost:3000/l_group/' + String(this.lectureGroup.group_id) + '/attendance')).data.attendance
