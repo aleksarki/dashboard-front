@@ -27,27 +27,31 @@
                         <PieChart :title="'Процент выполнения контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
                     </div>
                 </div>
-                <span class="page-title">Список групп практики</span>
-                <div class="basic-list">
-                    <router-link
-                        v-for="practiceGroup in practiceGroupList"
-                        :to="{name: 'practice-group-info', params: {id: practiceGroup.group_id}}"
-                        :key="practiceGroup.group_id"
-                        tag="ul"
-                    >
-                        <li class="basic-list-item">{{ practiceGroup.group_name }}</li>
-                    </router-link>
+                <div class="text-column">
+                    <span class="page-title">Список групп практики</span>
+                    <div class="basic-list">
+                        <router-link
+                            v-for="practiceGroup in practiceGroupList"
+                            :to="{name: 'practice-group-info', params: {id: practiceGroup.group_id}}"
+                            :key="practiceGroup.group_id"
+                            tag="ul"
+                        >
+                            <li class="basic-list-item">{{ practiceGroup.group_name }}</li>
+                        </router-link>
+                    </div>
                 </div>
-                <span class="page-title">Список групп лекций</span>
-                <div class="basic-list">
-                    <router-link
-                        v-for="lectureGroup in lectureGroupList"
-                        :to="{name: 'lecture-group-info', params: {id: lectureGroup.group_id}}"
-                        :key="lectureGroup.group_id"
-                        tag="ul"
-                    >
-                        <li class="basic-list-item">{{ lectureGroup.group_name }}</li>
-                    </router-link>
+                <div class="text-column">
+                    <span class="page-title">Список групп лекций</span>
+                    <div class="basic-list">
+                        <router-link
+                            v-for="lectureGroup in lectureGroupList"
+                            :to="{name: 'lecture-group-info', params: {id: lectureGroup.group_id}}"
+                            :key="lectureGroup.group_id"
+                            tag="ul"
+                        >
+                            <li class="basic-list-item">{{ lectureGroup.group_name }}</li>
+                        </router-link>
+                    </div>
                 </div>
             </div>
             <div v-else>
@@ -219,3 +223,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.text-column {
+	display: inline-block;
+	min-width: 425px;
+	vertical-align: top;
+}
+</style>
