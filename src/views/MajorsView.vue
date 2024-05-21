@@ -10,7 +10,7 @@
                     :key="major.dir_id"
                     tag="ul"
 				>
-					<li class="basic-list-item">{{ major.dir_name }}</li>
+					<li class="basic-list-item">{{ major.dir_name }} ({{ major.studentNumber }} студ.)</li>
 				</router-link>
             </div>
         </div>
@@ -37,8 +37,18 @@ export default {
     methods: {
         async fetchMajors() {
             try {
-                const response = await axios.get('http://localhost:3000/direction')
-                this.majorList = response.data
+                this.majorList = (await axios.get('http://localhost:3000/direction')).data
+                for (const major of this.majorList) {
+                    major.studentNumber = 0
+                }
+                const students = (await axios.get('http://localhost:3000/student')).data
+                for (const student of students) {
+                    student.dir_id
+                    for (const major of this.majorList) {
+                        if (major.dir_id == student.dir_id)
+                            major.studentNumber++
+                    }
+                }
             } catch (e) {
                 console.log(e)
             }
