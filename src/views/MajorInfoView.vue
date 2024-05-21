@@ -15,7 +15,7 @@
                         <PieChart :title="'Средний балл студентов'" :data="totalScoreNumChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
-                        <BarChart :title="'Средний балл по группам'" :data="totalScoreHistChartData" :options="hbarChartOptions"/>
+                        <BarChart :title="'Средний балл по группам практики'" :data="totalScoreHistChartData" :options="hbarChartOptions"/>
                     </div>
                     <div class="cell">
                         <PieChart :title="'Процент выполнения контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
@@ -166,9 +166,9 @@ export default {
                         if (score.l_group_id) {  // lecture group
                             const lectureGroup = (await axios.get('http://localhost:3000/l_group/' + String(score.l_group_id))).data
                             this.lectureGroupList.push(lectureGroup)
-                            labels.push(lectureGroup.group_name)
-                            data.push(score.score)
-                            backgroundColor.push(getRandomColor())
+                            //labels.push(lectureGroup.group_name)
+                            //data.push(score.score)
+                            //backgroundColor.push(getRandomColor())
                         } else {  // practice group
                             const practiceGroup = (await axios.get('http://localhost:3000/p_group/' + String(score.p_group_id))).data
                             this.practiceGroupList.push(practiceGroup)

@@ -93,7 +93,7 @@ button:active {
 
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   padding: 1rem;
   margin: auto;
