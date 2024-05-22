@@ -1,19 +1,19 @@
 <template>
-    <BasicChart :title="title">
+    <TitledPanel :title="title">
         <Pie :options="options" :data="chartData"/>
-    </BasicChart>
+    </TitledPanel>
 </template>
 
 <script>
 import { Pie } from 'vue-chartjs'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import BasicChart from '@/components/BasicChart.vue'
+import TitledPanel from '@/components/TitledPanel.vue'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 export default {
     name: 'PieChart',
-    components: { Pie, BasicChart },
+    components: { Pie, TitledPanel },
     props: {
         data: {
             type: Object,

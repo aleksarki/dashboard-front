@@ -1,19 +1,19 @@
 <template>
-  <BasicChart :title="title">
+  <TitledPanel :title="title">
     <Bar :options="options" :data="chartData"/>
-  </BasicChart>
+  </TitledPanel>
 </template>
   
 <script>
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import BasicChart from '@/components/BasicChart.vue'
+import TitledPanel from '@/components/TitledPanel.vue'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
   name: 'BarChart',
-  components: { Bar, BasicChart },
+  components: { Bar, TitledPanel },
   props: {
     data: {
       type: Object,

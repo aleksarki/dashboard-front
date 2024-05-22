@@ -1,9 +1,7 @@
 <template>
-    <div class="chart-panel">
-        <div class="chart-title">
-            <span>{{ title }}</span>
-        </div>
-        <div class="chart-slot">
+    <div class="panel">
+        <span class="panel-title">{{ title }}</span>
+        <div class="panel-slot">
             <slot></slot>
         </div>
     </div>
@@ -11,7 +9,7 @@
 
 <script>
 export default {
-    name: 'BasicChart',
+    name: 'TitledPanel',
     props: {
         title: {
             type: String,
@@ -22,19 +20,19 @@ export default {
 </script>
 
 <style scoped>
-.chart-panel {
+.panel {
     background-color: white;
     padding: 20px;
     border-radius: 15px;
     overflow: hidden;
 }
 
-.chart-title {
+.panel-title {
     font-weight: 500;
     margin-left: 5%;
 }
 
-.chart-slot {
+.panel-slot {
     height: 90%;
 }
 </style>

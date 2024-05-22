@@ -16,6 +16,8 @@ import NotFoundView from '@/views/NotFoundView.vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 
+import VueApexCharts from "vue3-apexcharts"
+
 const router = createRouter({
     routes: [
         {path: '/', name: 'home', component: HomeView},
@@ -34,4 +36,5 @@ const router = createRouter({
 
 const app = createApp(App)
 app.use(router)
+app.use(VueApexCharts)
 app.mount('#app')
