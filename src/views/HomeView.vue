@@ -5,16 +5,16 @@
             <span class="page-title">Главная</span>
             <div class="charts-grid">
                 <div class="cell">
-                    <PieChart :title="'Процент посещаемости'" :data="attendanceChartData" :options="doughnutChartOptions"/>
+                    <ApexDonutChart :title="'Процент посещаемости'" :series="attendanceChartSeries" :options="attendanceChartOptions"/>
                 </div>
                 <div class="cell">
-                    <PieChart :title="'Выполнение контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
+                    <ApexDonutChart :title="'Выполнение контрольной №1'" :series="testResult1ChartSeries" :options="testResultChartOptions"/>
                 </div>
                 <div class="cell">
-                    <PieChart :title="'Выполнение контрольной №2'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
+                    <ApexDonutChart :title="'Выполнение контрольной №2'" :series="testResult2ChartSeries" :options="testResultChartOptions"/>
                 </div>
                 <div class="cell">
-                    <PieChart :title="'Выполнение контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
+                    <ApexDonutChart :title="'Выполнение контрольной №3'" :series="testResult3ChartSeries" :options="testResultChartOptions"/>
                 </div>
             </div>
         </div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import ApexDonutChart from '@/components/ApexDonutChart.vue'
 import PieChart from '@/components/PieChart.vue'
 import SideBar from '@/components/SideBar.vue'
 import axios from 'axios'
@@ -29,34 +30,30 @@ import axios from 'axios'
 const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
 
 export default {
-    components: { PieChart, SideBar },
+    components: { PieChart, SideBar, ApexDonutChart },
 
     data() {
         return {
-            doughnutChartOptions: {
-                responsive: true,
-                cutout: '50%'
+            attendanceChartOptions: {
+                //xaxis: { categories: ['П', 'Н'], },
+                labels: ['П', 'Н'],
+                colors: ['#41B883', '#E46651']
             },
 
-            attendanceChartData: {
-                labels: [],
-                datasets: [{}]
+            attendanceChartSeries: [],
+
+            testResultChartOptions: {
+                labels: ['1', '2'],
+                colors: ['#41B883', '#E46651'],
+                legend: { show: false },
+                chart: { width: '100%', height: '100%'}
             },
 
-            testResult1ChartData: {
-                labels: [],
-                datasets: [{}]
-            },
+            testResult1ChartSeries: [],
 
-            testResult2ChartData: {
-                labels: [],
-                datasets: [{}]
-            },
+            testResult2ChartSeries: [],
 
-            testResult3ChartData: {
-                labels: [],
-                datasets: [{}]
-            }
+            testResult3ChartSeries: []
         }
     },
 
@@ -72,35 +69,12 @@ export default {
                 globalAttendanceList.forEach(attendance => {
                     attendances.push(attendance.attendance)
                 })
-                this.attendanceChartData = {
-                    labels: ['П', 'Н'],
-                    datasets: [{
-                        backgroundColor: ['#41B883', '#E46651'],
-                        data: [average(attendances), 1 - average(attendances)]
-                    }]
-                }
+                this.attendanceChartSeries = [average(attendances), 1 - average(attendances)]
+
                 const globalTestResult = (await axios.get('http://localhost:3000/testresult')).data
-                this.testResult1ChartData = {
-                    labels: ['Баллы'],
-                    datasets: [{
-                        backgroundColor: ['#41B883', '#E46651'],
-                        data: [globalTestResult.test1_score, 1 - globalTestResult.test1_score]
-                    }]
-                }
-                this.testResult2ChartData = {
-                    labels: ['Баллы'],
-                    datasets: [{
-                        backgroundColor: ['#41B883', '#E46651'],
-                        data: [globalTestResult.test2_score, 1 - globalTestResult.test2_score]
-                    }]
-                }
-                this.testResult3ChartData = {
-                    labels: ['Баллы'],
-                    datasets: [{
-                        backgroundColor: ['#41B883', '#E46651'],
-                        data: [globalTestResult.test3_score, 1 - globalTestResult.test3_score]
-                    }]
-                }
+                this.testResult1ChartSeries = [globalTestResult.test1_score, 1 - globalTestResult.test1_score]
+                this.testResult2ChartSeries = [globalTestResult.test2_score, 1 - globalTestResult.test2_score]
+                this.testResult3ChartSeries = [globalTestResult.test3_score, 1 - globalTestResult.test3_score]
             } catch (e) {
                 console.log(e)
             }
