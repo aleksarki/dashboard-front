@@ -8,13 +8,13 @@
                     <PieChart :title="'Процент посещаемости'" :data="attendanceChartData" :options="doughnutChartOptions"/>
                 </div>
                 <div class="cell">
-                    <PieChart :title="'Выполнение контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
+                    <PieChart :title="'Выполнение контрольной №1 Управляющие конструкции'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
                 </div>
                 <div class="cell">
-                    <PieChart :title="'Выполнение контрольной №2'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
+                    <PieChart :title="'Выполнение контрольной №2 Организация функций'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
                 </div>
                 <div class="cell">
-                    <PieChart :title="'Выполнение контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
+                    <PieChart :title="'Выполнение контрольной №3 Коллекции. Работа с файлами'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
                 </div>
             </div>
         </div>

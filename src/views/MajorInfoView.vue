@@ -18,13 +18,13 @@
                         <BarChart :title="'Средний балл по группам практики'" :data="totalScoreHistChartData" :options="hbarChartOptions"/>
                     </div>
                     <div class="cell">
-                        <PieChart :title="'Процент выполнения контрольной №1'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Процент выполнения контрольной №1 Управляющие конструкции'" :data="testResult1ChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
-                        <PieChart :title="'Процент выполнения контрольной №2'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Процент выполнения контрольной №2 Организация функций'" :data="testResult2ChartData" :options="doughnutChartOptions"/>
                     </div>
                     <div class="cell">
-                        <PieChart :title="'Процент выполнения контрольной №3'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
+                        <PieChart :title="'Процент выполнения контрольной №3 Коллекции. Работа с файлами'" :data="testResult3ChartData" :options="doughnutChartOptions"/>
                     </div>
                 </div>
                 <div class="text-column">
