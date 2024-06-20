@@ -8,13 +8,13 @@
                     <ApexDonutChart :title="'Процент посещаемости'" :series="attendanceChartSeries" :options="attendanceChartOptions"/>
                 </div>
                 <div class="cell">
-                    <ApexDonutChart :title="'Выполнение контрольной №1'" :series="testResult1ChartSeries" :options="testResultChartOptions"/>
+                    <ApexRadialChart :title="'Выполнение контрольной №1 Управляющие конструкции'" :series="testResult1ChartSeries" :options="testResultChartOptions"/>
                 </div>
                 <div class="cell">
-                    <ApexDonutChart :title="'Выполнение контрольной №2'" :series="testResult2ChartSeries" :options="testResultChartOptions"/>
+                    <ApexRadialChart :title="'Выполнение контрольной №2 Организация функций'" :series="testResult2ChartSeries" :options="testResultChartOptions"/>
                 </div>
                 <div class="cell">
-                    <ApexDonutChart :title="'Выполнение контрольной №3'" :series="testResult3ChartSeries" :options="testResultChartOptions"/>
+                    <ApexRadialChart :title="'Выполнение контрольной №3 Коллекции. Работа с файлами'" :series="testResult3ChartSeries" :options="testResultChartOptions"/>
                 </div>
             </div>
         </div>
@@ -23,6 +23,7 @@
 
 <script>
 import ApexDonutChart from '@/components/ApexDonutChart.vue'
+import ApexRadialChart from '@/components/ApexRadialChart.vue'
 import PieChart from '@/components/PieChart.vue'
 import SideBar from '@/components/SideBar.vue'
 import axios from 'axios'
@@ -30,30 +31,49 @@ import axios from 'axios'
 const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
 
 export default {
-    components: { PieChart, SideBar, ApexDonutChart },
+    components: { PieChart, SideBar, ApexDonutChart, ApexRadialChart },
 
     data() {
         return {
             attendanceChartOptions: {
                 //xaxis: { categories: ['П', 'Н'], },
                 labels: ['П', 'Н'],
-                colors: ['#41B883', '#E46651']
+                colors: ['#41B883', '#E46651'],
+                chart: { width: '100%', height: '100%'}
             },
 
             attendanceChartSeries: [],
-
-            testResultChartOptions: {
-                labels: ['1', '2'],
-                colors: ['#41B883', '#E46651'],
-                legend: { show: false },
-                chart: { width: '100%', height: '100%'}
-            },
 
             testResult1ChartSeries: [],
 
             testResult2ChartSeries: [],
 
-            testResult3ChartSeries: []
+            testResult3ChartSeries: [],
+
+            testResultChartOptions: {
+                colors: ['#41B883'],
+                plotOptions: {
+                    radialBar: {
+                        hollow: {
+                            size: '70%',
+                        },
+                        dataLabels: {
+                            name: {show: false},
+                            value: {
+                                fontSize: '24px',
+                                offsetY: 10,
+                                color: '#41B883'
+                            }
+                        }
+                    },
+                },
+                chart: {
+                    width: '100%',
+                    height: '100%',
+                    redrawOnParentResize: true,
+                    redrawOnWindowResize: true
+                }
+            }
         }
     },
 
@@ -72,9 +92,9 @@ export default {
                 this.attendanceChartSeries = [average(attendances), 1 - average(attendances)]
 
                 const globalTestResult = (await axios.get('http://localhost:3000/testresult')).data
-                this.testResult1ChartSeries = [globalTestResult.test1_score, 1 - globalTestResult.test1_score]
-                this.testResult2ChartSeries = [globalTestResult.test2_score, 1 - globalTestResult.test2_score]
-                this.testResult3ChartSeries = [globalTestResult.test3_score, 1 - globalTestResult.test3_score]
+                this.testResult1ChartSeries = [(globalTestResult.test1_score*100).toFixed(2)]
+                this.testResult2ChartSeries = [(globalTestResult.test2_score*100).toFixed(2)]
+                this.testResult3ChartSeries = [(globalTestResult.test3_score*100).toFixed(2)]
             } catch (e) {
                 console.log(e)
             }

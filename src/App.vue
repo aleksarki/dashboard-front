@@ -104,6 +104,7 @@ button:active {
   width: 100%;
   /*padding: 1rem;*/
   border-radius: 5%;
+  height: 100%;
 }
 
 .basic-list {

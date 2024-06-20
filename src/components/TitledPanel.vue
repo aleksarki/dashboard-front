@@ -1,6 +1,6 @@
 <template>
-    <div class="panel">
-        <span class="panel-title">{{ title }}</span>
+    <div class="panel" :style="style">
+        <span v-if="title" class="panel-title">{{ title }}</span>
         <div class="panel-slot">
             <slot></slot>
         </div>
@@ -14,6 +14,27 @@ export default {
         title: {
             type: String,
             default: ''
+        },
+        padding: {
+            type: Number,
+            default: 20
+        },
+        height: {
+            type: String,
+            default: '100%'
+        },
+        width: {
+            type: String,
+            default: '100%'
+        }
+    },
+    computed: {
+        style() {
+            return {
+                '--padding': this.padding + 'px',
+                '--height': this.height,
+                '--width': this.width
+            }
         }
     }
 }
@@ -22,9 +43,11 @@ export default {
 <style scoped>
 .panel {
     background-color: white;
-    padding: 20px;
+    padding: var(--padding);
     border-radius: 15px;
     overflow: hidden;
+    height: var(--height);
+    width: var(--width);
 }
 
 .panel-title {
@@ -34,5 +57,6 @@ export default {
 
 .panel-slot {
     height: 90%;
+    min-height: 90%;
 }
 </style>
